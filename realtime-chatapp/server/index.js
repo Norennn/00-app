@@ -2,15 +2,19 @@ const express = require("express");
 const { createServer } = require("node:http");
 const { join } = require("node:path");
 const { Server } = require("socket.io");
+const port = process.env.PORT || 8000;
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3001"],
+    origin: ["https://zero0-app.onrender.com/", "http://localhost:3001"],
     credentials: true,
   },
 });
+
+// 静的ファイルを提供する設定
+app.use(express.static(join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.sendFile(join(__dirname, "index.html"));
@@ -32,6 +36,10 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log("server running at http://localhost:3000");
+server.listen(port, (err) => {
+  if (err) {
+    console.error("サーバー起動エラー:", err);
+  } else {
+    console.log(`server running at ${port}`);
+  }
 });

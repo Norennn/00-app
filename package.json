@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "server": "file:realtime-chatapp/server"
+  }
+}
