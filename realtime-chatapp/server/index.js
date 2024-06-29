@@ -8,7 +8,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://zero0-app.onrender.com/", "http://localhost:3001"],
+    origin: ["https://zero0-app.onrender.com/", "http://localhost:3000"],
     credentials: true,
   },
 });
