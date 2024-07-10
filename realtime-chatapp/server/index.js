@@ -9,11 +9,12 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "https://zero0-app.onrender.com/",
+      "https://zero0-app.onrender.com",
       "http://localhost:3000",
-      "https://00-app-ebon.vercel.app/",
-      "https://zero0-app-1-client.onrender.com/",
+      "https://00-app-ebon.vercel.app",
     ],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
