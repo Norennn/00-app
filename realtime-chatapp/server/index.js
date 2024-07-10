@@ -8,7 +8,11 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://zero0-app.onrender.com/", "http://localhost:3000"],
+    origin: [
+      "https://zero0-app.onrender.com/",
+      "http://localhost:3000",
+      "https://00-app-ebon.vercel.app/",
+    ],
     credentials: true,
   },
 });
