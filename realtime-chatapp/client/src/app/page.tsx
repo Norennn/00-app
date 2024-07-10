@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 
 // 環境変数を使用して接続先を設定
 const socket = io(
-  process.env.NEXT_PUBLIC_SOCKET_URL || "https://zero0-app.onrender.com:8000"
+  process.env.NEXT_PUBLIC_SOCKET_URL || "https://zero0-app.onrender.com"
 );
 
 export default function Home() {
