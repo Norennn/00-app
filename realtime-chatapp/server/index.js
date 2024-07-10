@@ -12,6 +12,7 @@ const io = new Server(server, {
       "https://zero0-app.onrender.com/",
       "http://localhost:3000",
       "https://00-app-ebon.vercel.app/",
+      "https://zero0-app-1-client.onrender.com/",
     ],
     credentials: true,
   },
