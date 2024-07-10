@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 
 // 環境変数を使用して接続先を設定
 const socket = io(
-  process.env.NEXT_PUBLIC_SOCKET_URL || "https://zero0-app.onrender.com"
+  process.env.NEXT_PUBLIC_SOCKET_URL || "https://zero0-app.onrender.com/"
 );
 
 export default function Home() {
@@ -34,13 +34,13 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      チャットアプリ
       <input
         type="text"
         onChange={(e) => setMessage(e.target.value)}
         value={message}
       />
-      <button onClick={() => handleSendMessage()}>送信</button>
-
+      <button onClick={() => handleSendMessage()}>送信する</button>
       <ul>
         {messageList.map((chat, index) => (
           <li key={index}>{chat.message}</li>
