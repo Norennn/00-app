@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/providers/ModalProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 import { cn } from "@/lib/utils";
 
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={cn(inter.className, "bg-gray-100/30")}>
-        <Toaster />
-        <ModalProvider />
+        <AuthProvider>
+          <Toaster />
+          <ModalProvider />
+        </AuthProvider>
         {children}
       </body>
     </html>
