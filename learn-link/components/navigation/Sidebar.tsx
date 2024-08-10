@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { Loader2, Search } from "lucide-react";
 
@@ -12,11 +14,13 @@ import { UserAvatar } from "@/components/UserAvatar";
 
 import { SafeUser } from "@/types/prisma";
 import { fetchUsersByName } from "@/actions/fetchUsers";
+import { cn } from "@/lib/utils";
 
 export const Sidebar = () => {
   const [users, setUsers] = useState<SafeUser[]>([]);
   const [value, setValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -70,10 +74,13 @@ export const Sidebar = () => {
             {users.map((user) => (
               <div
                 key={`user-${user.id}`}
-                className="flex items-center space-x-2 rounded-md p-2 mb-2  hover:bg-zinc-200/70 transition text-zinc-700 "
+                className={cn(
+                  "flex items-center space-x-2 rounded-md p-2 mb-2  hover:bg-zinc-200/70 transition text-zinc-700",
+                  pathname.includes(user.id) && "bg-zinc-300/70"
+                )}
               >
                 <UserAvatar image={user.image} />
-                <div>{user.name}</div>
+                <Link href={`/thread/${user.id}`}>{user.name}</Link>
               </div>
             ))}
           </>

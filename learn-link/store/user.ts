@@ -7,6 +7,14 @@ export const getUserByEmail = async (email: string) => {
   return user;
 };
 
+export const getSafeUserById = async (id: string): Promise<SafeUser | null> => {
+  const user = await db.user.findUnique({
+    where: { id },
+  });
+  if (!user) return null;
+  return createSafeUser(user);
+};
+
 export const getSafeUsersByName = async (
   name?: string,
   ignoreId?: string
@@ -21,11 +29,16 @@ export const getSafeUsersByName = async (
       },
     },
   });
-  const safeUsers = users.map((user) => convertSafeUser(user));
+  const safeUsers = users.map((user) => createSafeUser(user));
   return safeUsers;
 };
 
 export const convertSafeUser = (user: User): SafeUser => {
+  const { password, ...safeUser } = user;
+  return safeUser;
+};
+
+export const createSafeUser = (user: User): SafeUser => {
   const { password, ...safeUser } = user;
   return safeUser;
 };
